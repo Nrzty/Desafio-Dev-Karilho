@@ -1,8 +1,10 @@
+import infaestructure.util.ValidacoesScanner;
 import ui.MenuPrincipal;
 
 public class Main{
     public static void main(String[] args) {
-        MenuPrincipal menuPrincipal = new MenuPrincipal();
-        System.out.println(menuPrincipal.imprimirMenu());
+        ValidacoesScanner validacoesScanner = new ValidacoesScanner();
+        MenuPrincipal menuPrincipal = new MenuPrincipal(validacoesScanner);
+        menuPrincipal.selecionarOpcaoNoMenu();
     }
 }
