@@ -1,10 +1,10 @@
-import infaestructure.util.ValidacoesScanner;
+import infaestructure.util.ValidacoesInputs;
 import ui.MenuPrincipal;
 
 public class Main{
     public static void main(String[] args) {
-        ValidacoesScanner validacoesScanner = new ValidacoesScanner();
-        MenuPrincipal menuPrincipal = new MenuPrincipal(validacoesScanner);
-        menuPrincipal.selecionarOpcaoNoMenu();
+        ValidacoesInputs validacoesScanner = new ValidacoesInputs();
+        //MenuPrincipal menuPrincipal = new MenuPrincipal(validacoesScanner);
+        //menuPrincipal.selecionarOpcaoNoMenu();
     }
 }

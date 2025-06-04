@@ -1,12 +1,12 @@
 package ui;
 
-import infaestructure.util.ValidacoesScanner;
+import infaestructure.util.ValidacoesInputs;
 
 public class MenuPrincipal {
     
-    private final ValidacoesScanner validacoesScanner;
+    private final ValidacoesInputs validacoesScanner;
 
-    public MenuPrincipal(ValidacoesScanner validacoesScanner){
+    public MenuPrincipal(ValidacoesInputs validacoesScanner){
         this.validacoesScanner = validacoesScanner;
     }
 
