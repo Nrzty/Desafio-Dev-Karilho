@@ -14,6 +14,8 @@ public class Main{
         Endereco endereco = new Endereco(69, "aracaju", "murilo dantas");
         Pet pet = new Pet("Pitou", "Santana", "De rua", SexoPet.FEMININO, TipoPet.GATO, endereco, 10, 20 );
         FileHandler file = new FileHandler();
-        file.criarArquivo(pet, pet.getName());
+        //file.criarArquivo(pet, pet.getName());
+
+        file.lerOFormulario();
     }
 }

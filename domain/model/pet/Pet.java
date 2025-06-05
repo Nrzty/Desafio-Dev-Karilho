@@ -33,10 +33,14 @@ public class Pet {
     }
 
     public void mudarNome(String nome) {
-        if (validacoesInputs.verificarCaracteresEspeciais(nome)) {
-            throw new RuntimeException("O nome não pode conter caracteres especiais!");
+        if (nome == null || nome.trim().isEmpty()){
+            throw new RuntimeException("O nome é obrigatório");
         }
         
+        if (validacoesInputs.verificarCaracteresEspeciais(nome)){
+            throw new RuntimeException("O nome não pode conter caracteres especiais ou números!");
+        }
+
         this.nome = nome;
     }
 
@@ -73,15 +77,39 @@ public class Pet {
             throw new RuntimeException("A idade não pode ser maior que 20 anos!");
         }
 
-        if (idade < 1) {
-            this.idade = idade / 12;
-        }
-
         this.idade = idade;
     }
 
-    public String getName(){
+    public String getNome(){
         return this.nome;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public String getRaca() {
+        return raca;
+    }
+
+    public SexoPet getSexoPet() {
+        return sexoPet;
+    }
+
+    public TipoPet getTipoPet() {
+        return tipoPet;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public double getIdade() {
+        return idade;
+    }
+
+    public double getPeso() {
+        return peso;
     }
 
     @Override

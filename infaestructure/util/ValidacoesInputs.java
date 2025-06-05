@@ -49,10 +49,10 @@ public class ValidacoesInputs {
     }
 
     public boolean verificarCaracteresEspeciais(String texto){
-        if (!texto.matches("[a-z][A-Z]*")){
+        if (texto == null){
             return false;
-        } 
-        return true;
+        }
+        return !texto.matches("\"^[\\\\p{L}\\\\s]+$\"");
     }
 
     public String formatarValorNaoINformado(Object object, String valor){
