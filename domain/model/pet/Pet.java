@@ -41,7 +41,7 @@ public class Pet {
     }
 
     public void mudarSobrenome(String sobrenome) {
-        if (validacoesInputs.verificarCaracteresEspeciais(nome)) {
+        if (validacoesInputs.verificarCaracteresEspeciais(sobrenome)) {
             throw new RuntimeException("O nome não pode conter caracteres especiais!");
         }
 
@@ -80,15 +80,18 @@ public class Pet {
         this.idade = idade;
     }
 
+    public String getName(){
+        return this.nome;
+    }
+
     @Override
     public String toString() {
-        return "Nome=" + validacoesInputs.formatarValorNaoINformado(nome, validacoesInputs.getValorNaoinformado()) +
-             ", Sobrenome=" + sobrenome + 
-             ", Raca=" + validacoesInputs.formatarValorNaoINformado(raca, validacoesInputs.getValorNaoinformado()) +
-             ", SexoPet=" + sexoPet +
-             ", TipoPet=" + tipoPet + 
-             ", Endereco=" + endereco + 
-             ", Idade=" + validacoesInputs.formatarValorNaoINformado(idade, validacoesInputs.getValorNaoinformado()) + 
-             ", Peso=" + validacoesInputs.formatarValorNaoINformado(peso, validacoesInputs.getValorNaoinformado());
+        return " 1 - " + validacoesInputs.formatarValorNaoINformado(nome, validacoesInputs.getValorNaoinformado()) + " " + sobrenome + "\n " +
+               "3 - " + tipoPet + "\n " +
+               "2 - " + sexoPet + "\n " +
+               "4 - " + endereco + "\n " +  
+               "5 - " + validacoesInputs.formatarValorNaoINformado(idade, validacoesInputs.getValorNaoinformado()) + " anos" + "\n " + 
+               "6 - " + validacoesInputs.formatarValorNaoINformado(peso, validacoesInputs.getValorNaoinformado()) + "kg" +"\n " +
+               "7 - " + validacoesInputs.formatarValorNaoINformado(raca, validacoesInputs.getValorNaoinformado()); 
     }
 }

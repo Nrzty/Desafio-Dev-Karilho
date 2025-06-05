@@ -44,8 +44,7 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "NumeroDaCasa=" + numeroDaCasa +
-             ", Cidade=" + cidade + 
-             ", Rua=" + validacoesInputs.formatarValorNaoINformado(rua, validacoesInputs.getValorNaoinformado());
+        return "Rua " + validacoesInputs.formatarValorNaoINformado(rua, validacoesInputs.getValorNaoinformado()) + ", " +
+               numeroDaCasa + ", " + cidade;
     }
 }
