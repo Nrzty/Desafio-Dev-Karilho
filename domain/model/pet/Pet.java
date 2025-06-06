@@ -1,11 +1,12 @@
 package domain.model.pet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import domain.model.endereco.Endereco;
-import infaestructure.util.ValidacoesInputs;
+import infrastructure.util.ValidarStrings;
 
 public class Pet {
-    
-    private ValidacoesInputs validacoesInputs = new ValidacoesInputs();
 
     private String nome;
     private String sobrenome;
@@ -28,8 +29,28 @@ public class Pet {
         this.sexoPet = sexoPet;
         this.tipoPet = tipoPet;
         this.endereco = endereco;
-        this.idade = idade;
-        this.peso = peso;
+        mudarIdade(idade);
+        mudarPeso(peso);
+    }
+
+    public List<String> getRespostasParaArquivo(){
+        List<String> respostas = new ArrayList<>();
+
+        String enderecoFormatado = "Rua " + ValidarStrings.formatarValorNaoInformado(getEndereco().getRua(), ValidarStrings.VALOR_NAO_INFORMADO) +
+                              ", " + getEndereco().getNumeroDaCasa() +
+                              ", " + ValidarStrings.formatarValorNaoInformado(getEndereco().getCidade(), ValidarStrings.VALOR_NAO_INFORMADO);
+
+        String nomeCompleto = ValidarStrings.formatarValorNaoInformado(this.nome, " ") + " " + ValidarStrings.formatarValorNaoInformado(this.sobrenome, "");
+
+        respostas.add(nomeCompleto.trim());
+        respostas.add(this.tipoPet.toString());
+        respostas.add(this.sexoPet.toString());
+        respostas.add(enderecoFormatado);
+        respostas.add(this.idade + " anos");
+        respostas.add(this.peso + "kg");
+        respostas.add(ValidarStrings.formatarValorNaoInformado(this.raca, ValidarStrings.VALOR_NAO_INFORMADO));
+
+        return respostas;
     }
 
     public void mudarNome(String nome) {
@@ -37,7 +58,7 @@ public class Pet {
             throw new RuntimeException("O nome é obrigatório");
         }
         
-        if (validacoesInputs.verificarCaracteresEspeciais(nome)){
+        if (!ValidarStrings.verificarCaracteresEspeciais(nome)){
             throw new RuntimeException("O nome não pode conter caracteres especiais ou números!");
         }
 
@@ -45,7 +66,7 @@ public class Pet {
     }
 
     public void mudarSobrenome(String sobrenome) {
-        if (validacoesInputs.verificarCaracteresEspeciais(sobrenome)) {
+        if (ValidarStrings.verificarCaracteresEspeciais(sobrenome)) {
             throw new RuntimeException("O nome não pode conter caracteres especiais!");
         }
 
@@ -57,7 +78,7 @@ public class Pet {
     }
 
     public void mudarRaca(String raca){
-        if (validacoesInputs.verificarCaracteresEspeciais(raca)){
+        if (ValidarStrings.verificarCaracteresEspeciais(raca)){
             throw new RuntimeException("A raça não pode conter números nem caracteres especiais!");
         }
 
@@ -73,8 +94,8 @@ public class Pet {
     }
 
     public void mudarIdade(double idade){
-        if (idade > 20){
-            throw new RuntimeException("A idade não pode ser maior que 20 anos!");
+        if (idade > 20 || idade < 0){
+            throw new RuntimeException("A idade tem que ser entre 0 a 20 anos!");
         }
 
         this.idade = idade;
@@ -114,12 +135,12 @@ public class Pet {
 
     @Override
     public String toString() {
-        return " 1 - " + validacoesInputs.formatarValorNaoINformado(nome, validacoesInputs.getValorNaoinformado()) + " " + sobrenome + "\n " +
+        return " 1 - " + ValidarStrings.formatarValorNaoInformado(nome, ValidarStrings.VALOR_NAO_INFORMADO) + " " + sobrenome + "\n " +
                "3 - " + tipoPet + "\n " +
                "2 - " + sexoPet + "\n " +
                "4 - " + endereco + "\n " +  
-               "5 - " + validacoesInputs.formatarValorNaoINformado(idade, validacoesInputs.getValorNaoinformado()) + " anos" + "\n " + 
-               "6 - " + validacoesInputs.formatarValorNaoINformado(peso, validacoesInputs.getValorNaoinformado()) + "kg" +"\n " +
-               "7 - " + validacoesInputs.formatarValorNaoINformado(raca, validacoesInputs.getValorNaoinformado()); 
+               "5 - " + ValidarStrings.formatarValorNaoInformado(idade, ValidarStrings.VALOR_NAO_INFORMADO) + " anos" + "\n " + 
+               "6 - " + ValidarStrings.formatarValorNaoInformado(peso, ValidarStrings.VALOR_NAO_INFORMADO) + "kg" +"\n " +
+               "7 - " + ValidarStrings.formatarValorNaoInformado(raca, ValidarStrings.VALOR_NAO_INFORMADO); 
     }
 }

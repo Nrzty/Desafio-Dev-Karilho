@@ -1,4 +1,4 @@
-package infaestructure.file;
+package infrastructure.file;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,6 +9,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -23,10 +25,7 @@ public class FileHandler {
 
     public void criarArquivo(Object objectParaEscrever, String nomeDoArquivo){
         try {
-            LocalDateTime dataAtual = LocalDateTime.now();
-            
-            DateTimeFormatter formatador = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm");
-            String dataAtualFormatada = dataAtual.format(formatador);
+            String dataAtualFormatada = getDataAtualFormatada();
 
             String nomeFinalDoArquivo = dataAtualFormatada + "-" + nomeDoArquivo.toUpperCase() + ".txt";
             Path caminhoCompletoParaOArquivo = caminhoFinalDoArquivo.resolve(nomeFinalDoArquivo);
@@ -45,22 +44,26 @@ public class FileHandler {
         }
     }
 
-    public void lerOFormulario(){
+    private String getDataAtualFormatada() {
+        LocalDateTime dataAtual = LocalDateTime.now();
+        
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm");
+        String dataAtualFormatada = dataAtual.format(formatador);
+        return dataAtualFormatada;
+    }
+
+    public List<String> lerPerguntasDoFormulario(){
+        List<String> perguntas = new ArrayList<>();
         try (BufferedReader reader = Files.newBufferedReader(caminhoDoFormulario, StandardCharsets.UTF_8)) {
             String pergunta;
-            int numeroDaPergunta = 1;
 
             while ((pergunta = reader.readLine()) != null) {
-                System.out.println(pergunta);
-
-                System.out.print("Resposta: ");
-                String respostaDoUsuario = scanner.nextLine();
-
-                numeroDaPergunta++;
+                perguntas.add(pergunta);
             }
         } catch (Exception e) {
             System.out.println("Erro ao ler ou processar o formulário" + e.getMessage());
         }
+        return perguntas;
     }
 
     public long quantidadeDeLinhasDoArquivo(){

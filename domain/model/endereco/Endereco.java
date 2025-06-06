@@ -1,10 +1,8 @@
 package domain.model.endereco;
 
-import infaestructure.util.ValidacoesInputs;
+import infrastructure.util.ValidarStrings;
 
 public class Endereco {
-    
-    private ValidacoesInputs validacoesInputs = new ValidacoesInputs();
 
     private int numeroDaCasa;
     private String cidade;
@@ -21,8 +19,6 @@ public class Endereco {
     }
 
     public void mudarNumeroDaCasa(int numeroDaCasa) {
-        numeroDaCasa = validacoesInputs.pedirNumeroInteiro();
-
         this.numeroDaCasa = numeroDaCasa;
     }
 
@@ -44,7 +40,7 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "Rua " + validacoesInputs.formatarValorNaoINformado(rua, validacoesInputs.getValorNaoinformado()) + ", " +
+        return "Rua " + ValidarStrings.formatarValorNaoInformado(rua, ValidarStrings.VALOR_NAO_INFORMADO) + ", " +
                numeroDaCasa + ", " + cidade;
     }
 }

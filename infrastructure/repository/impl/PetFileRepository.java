@@ -1,7 +1,9 @@
-package infaestructure.repository.impl;
+package infrastructure.repository.impl;
 
-import infaestructure.file.FileHandler;
 import domain.repository.PetRepository;
+import infrastructure.file.FileHandler;
+
+import java.util.List;
 
 import domain.model.pet.Pet;
 
@@ -19,5 +21,12 @@ public class PetFileRepository implements PetRepository{
             fileHandler.criarArquivo(pet, nomeDoArquivo);
         }
         return pet;
+    }
+
+    public List<Pet> listarTodosOsPets(){
+        
+
+
+        return null;
     }
 }
