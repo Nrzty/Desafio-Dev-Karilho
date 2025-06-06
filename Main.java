@@ -14,16 +14,13 @@ public class Main{
         ValidacoesInputs validacoes = new ValidacoesInputs();
         FileHandler fileHandler = new FileHandler();
 
-        // Camada de Repositório
         PetRepository petRepository = new PetFileRepository(fileHandler);
 
-        // Camada de Serviço
         PetService petService = new PetService(petRepository);
 
-        // Camada de UI
         MenuPrincipal menu = new MenuPrincipal(validacoes, petService, fileHandler);
 
-        // Iniciar a aplicação
+        
         menu.selecionarOpcaoNoMenu();
     }
 }

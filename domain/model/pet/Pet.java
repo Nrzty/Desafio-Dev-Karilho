@@ -23,8 +23,8 @@ public class Pet {
 
     public Pet(String nome, String sobrenome, String raca, SexoPet sexoPet, TipoPet tipoPet, Endereco endereco,
             double idade, double peso) {
-        this.nome = nome;
-        this.sobrenome = sobrenome;
+        mudarNome(nome);
+        mudarSobrenome(sobrenome);
         this.raca = raca;
         this.sexoPet = sexoPet;
         this.tipoPet = tipoPet;
@@ -58,7 +58,7 @@ public class Pet {
             throw new RuntimeException("O nome é obrigatório");
         }
         
-        if (!ValidarStrings.verificarCaracteresEspeciais(nome)){
+        if (ValidarStrings.verificarCaracteresEspeciais(nome)){
             throw new RuntimeException("O nome não pode conter caracteres especiais ou números!");
         }
 

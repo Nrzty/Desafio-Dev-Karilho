@@ -1,5 +1,7 @@
 package application.service;
 
+import java.util.List;
+
 import domain.model.pet.Pet;
 import domain.repository.PetRepository;
 
@@ -17,5 +19,9 @@ public class PetService {
 
         Pet petSalvo = petRepository.cadastrarPet(pet);
         return petSalvo;
+    }
+
+    public List<Pet> listarTodosOsPetsCadastrados(){
+        return petRepository.listarTodosOsPetsCadastrados();
     }
 }

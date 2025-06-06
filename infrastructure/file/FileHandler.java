@@ -16,24 +16,25 @@ import java.util.stream.Stream;
 
 public class FileHandler {
     
-    String caminhoDoProjeto = System.getProperty("user.dir");
+    public static String caminhoDoProjeto = System.getProperty("user.dir");
 
-    Path caminhoFinalDoArquivo = Paths.get(caminhoDoProjeto, "petsCadastrados");
+    public static final Path CAMINHO_FINAL_DO_ARQUIVO = Paths.get(caminhoDoProjeto, "petsCadastrados");
     Path caminhoDoFormulario = Paths.get(caminhoDoProjeto, "formulario.txt");
 
     Scanner scanner = new Scanner(System.in);
 
-    public void criarArquivo(Object objectParaEscrever, String nomeDoArquivo){
+    public void criarArquivo(List<String> linhasParaEscrever, String nomeDoArquivo){
         try {
             String dataAtualFormatada = getDataAtualFormatada();
 
             String nomeFinalDoArquivo = dataAtualFormatada + "-" + nomeDoArquivo.toUpperCase() + ".txt";
-            Path caminhoCompletoParaOArquivo = caminhoFinalDoArquivo.resolve(nomeFinalDoArquivo);
+            Path caminhoCompletoParaOArquivo = CAMINHO_FINAL_DO_ARQUIVO.resolve(nomeFinalDoArquivo);
             
             try (BufferedWriter writer = Files.newBufferedWriter(caminhoCompletoParaOArquivo, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
-                writer.write(objectParaEscrever.toString());
-                writer.newLine();
-                System.out.println("Arquivo " + nomeFinalDoArquivo + " salvo com sucesso!");
+                for(String linha : linhasParaEscrever){
+                    writer.write(linha);
+                    writer.newLine();
+                }
             
             } catch (Exception e) {
                 e.printStackTrace();

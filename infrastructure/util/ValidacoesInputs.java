@@ -17,7 +17,7 @@ public class ValidacoesInputs {
     }
 
     public int pedirNumeroInteiro(String mensagem){
-        System.out.println(mensagem);
+        System.out.print(mensagem);
 
         while (!scanner.hasNextInt()) {
             System.out.println("\n" + "Entrada Inválida, por favor, insira um número inteiro!");

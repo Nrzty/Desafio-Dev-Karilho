@@ -32,6 +32,24 @@ public class MenuPrincipal {
                 "6 - Sair";
     }
 
+    private void listarTodosOsPetsCadastrados(){
+        try {
+            List<Pet> pets = petService.listarTodosOsPetsCadastrados(); 
+            if (pets.isEmpty()){
+                System.out.println("Nenhum pet cadastrado!");
+            } else {
+                for (Pet pet : pets) {
+                    System.out.println("\n" + "---------------------------------");
+                    System.out.println(pet);
+                    System.out.println("---------------------------------");
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void processarCadastroDePet() {
         List<String> perguntas = fileHandler.lerPerguntasDoFormulario();
 
@@ -98,7 +116,7 @@ public class MenuPrincipal {
                 break;
 
             case 2:
-
+                listarTodosOsPetsCadastrados();
                 break;
 
             case 3:
